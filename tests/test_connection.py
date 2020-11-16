@@ -2760,6 +2760,15 @@ def test_channel_opener(node_factory):
     assert(l1.rpc.listpeers()['peers'][0]['channels'][0]['closer'] == 'local')
     assert(l2.rpc.listpeers()['peers'][0]['channels'][0]['closer'] == 'remote')
 
+def test_channel_feeRate(node_factory):
+    """ Simply checks for 'fee_rate' attributes on `listpeers` channels """
+    l1, l2 = node_factory.line_graph(2, fundchannel=True)
+    p1 = only_one(l1.rpc.listpeers()['peers'][0]['channels'][0])
+    p2 = only_one(l2.rpc.listpeers()['peers'][0]['channels'][0])
+    assert p1['fee_rate'] != 0
+    assert p2['fee_rate'] != 0
+
+
 
 def test_fundchannel_start_alternate(node_factory, executor):
     ''' Test to see what happens if two nodes start channeling to

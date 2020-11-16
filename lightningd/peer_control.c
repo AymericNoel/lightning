@@ -878,7 +878,7 @@ static void json_add_channel(struct lightningd *ld,
 				    "msatoshi_total", "total_msat");
 
 	/* channel fee rate */
-	json_add_u32(response, "fee rate", channel->feerate_base)
+	json_add_u32(response, "fee_rate", channel->feerate_base)
 
 	/* channel config */
 	json_add_amount_sat_compat(response,
